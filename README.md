@@ -321,34 +321,9 @@ brew install coin-or-tools/coinor/cbc  # macOS
 - 16 years: ~8-10 minutes
 - Memory: ~500 MB
 
-### Data Validation
-
-- No NaN values
-- Realistic price ranges
-- Positive bid-ask spreads
-- Continuous timestamps
-- Complete date coverage
-
 ---
 
-## Tips
 
-### For Accurate Results
-
-1. Use realistic degradation curves
-2. Validate market forecasts
-3. Conservative CAPEX estimates
-4. Account for all OPEX
-5. Appropriate discount rate (6-10%)
-
-### For Better Performance
-
-1. Use bulk loading: `load_all_market_years()`
-2. Close Excel files before running
-3. Install CBC solver
-4. Sufficient RAM (4GB recommended)
-
----
 
 Copyright (c) Pedro Filipe Viola Mendes
 
