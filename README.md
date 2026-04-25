@@ -331,26 +331,6 @@ brew install coin-or-tools/coinor/cbc  # macOS
 
 ---
 
-##  Version History
-
-### Version 1.3 (Current)
-- Fixed FEC to use degraded capacity
-- Removed sensitivity analysis
-- Comprehensive README
-
-### Version 1.2
-- Auto file overwrite
-- Better error handling
-
-### Version 1.1
-- Bulk market loading (16× faster)
-- Fixed FCR prices
-
-### Version 1.0
-- Initial release
-
----
-
 ## Tips
 
 ### For Accurate Results
