@@ -2,7 +2,6 @@
 
 Comprehensive battery energy storage system (BESS) dispatch optimization and financial modeling for German energy markets (FCR, aFRR, Day-Ahead, Intraday).
 
-**Version:** 1.3  
 **Last Updated:** April 2026
 
 ---
