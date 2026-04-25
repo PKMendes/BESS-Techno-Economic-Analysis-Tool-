@@ -172,13 +172,13 @@ project/
 
 | Parameter | Sheet | Typical Value |
 |-----------|-------|---------------|
-| Nominal Capacity | BESS_specs | 100 MWh |
-| Nominal Power | BESS_specs | 50 MW |
-| SOC Min | BESS_specs | 10% |
-| SOC Max | BESS_specs | 90% |
-| CAPEX | BESS_specs | €40,000,000 |
-| Max Cycles/Day | Lifetime_Parameters | 2.5 |
-| Discount Rate | Financial_Parameters | 7% |
+| Nominal Capacity | BESS_specs 
+| Nominal Power | BESS_specs 
+| SOC Min | BESS_specs
+| SOC Max | BESS_specs
+| CAPEX | BESS_specs 
+| Max Cycles/Day | Lifetime_Parameters 
+| Discount Rate | Financial_Parameters 
 
 ### Market Data
 
@@ -204,8 +204,6 @@ project/
 python bess_financial_feasibility.py
 ```
 
-Duration: ~5-10 minutes for 16-year simulation
-
 ### Custom Analysis
 
 ```python
@@ -226,7 +224,6 @@ analysis.export_to_excel('output/results.xlsx')
 
 ### Excel Report: BESS_Financial_Feasibility.xlsx
 
-**Total sheets:** 35 (for 16-year simulation)
 
 #### 1. Executive Summary
 
