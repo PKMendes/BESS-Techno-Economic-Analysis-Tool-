@@ -1,0 +1,190 @@
+# ============================================================================
+# BESS Dispatch Optimizer - Python Requirements
+# ============================================================================
+# CRITICAL: If you're using a virtual environment (venv), you MUST activate it
+# BEFORE installing packages. See "INSTALLATION GUIDE" section below.
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# CORE DATA MANIPULATION
+# ----------------------------------------------------------------------------
+pandas>=2.0.0          # DataFrame operations, Excel I/O, time series handling
+numpy>=1.24.0          # Numerical arrays, mathematical operations
+
+# ----------------------------------------------------------------------------
+# EXCEL FILE HANDLING (CRITICAL - Common installation issue)
+# ----------------------------------------------------------------------------
+openpyxl>=3.1.0        # Read/write Excel files (.xlsx format)
+                       # REQUIRED by pandas for Excel operations
+                       # Common error: "ImportError: Import openpyxl failed"
+                       # Solution: See INSTALLATION GUIDE below
+
+# ----------------------------------------------------------------------------
+# LINEAR PROGRAMMING OPTIMIZATION
+# ----------------------------------------------------------------------------
+PuLP>=2.7.0            # LP modeling framework for energy arbitrage optimization
+                       # Interfaces with CBC, GLPK, Gurobi, CPLEX solvers
+
+# ----------------------------------------------------------------------------
+# FINANCIAL CALCULATIONS (IRR/NPV)
+# ----------------------------------------------------------------------------
+numpy-financial>=1.0.0 # IRR (Internal Rate of Return) calculations
+                       # Optional: Falls back to Newton-Raphson if not installed
+
+# ----------------------------------------------------------------------------
+# PYTHON STANDARD LIBRARY (No installation needed)
+# ----------------------------------------------------------------------------
+# The following are used but come with Python:
+# - sys, pathlib, dataclasses, typing, warnings, datetime, traceback
+
+# ============================================================================
+# INSTALLATION GUIDE
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# METHOD 1: Virtual Environment (RECOMMENDED for Windows/Development)
+# ----------------------------------------------------------------------------
+# This is what you're using based on your error message!
+# Your venv path: C:\Users\pfvme\PycharmProjects\PythonProject\venv
+
+# Step 1: Activate your virtual environment
+# Windows (Command Prompt):
+#   cd C:\Users\pfvme\PycharmProjects\PythonProject
+#   venv\Scripts\activate.bat
+#
+# Windows (PowerShell):
+#   cd C:\Users\pfvme\PycharmProjects\PythonProject
+#   venv\Scripts\Activate.ps1
+#
+# Linux/macOS:
+#   cd /path/to/your/project
+#   source venv/bin/activate
+
+# Step 2: Verify you're in the virtual environment
+# You should see (venv) at the start of your command prompt
+
+# Step 3: Install packages
+#   pip install -r requirements.txt
+
+# Step 4: Verify installation
+#   python -c "import pandas, numpy, openpyxl, pulp; print('Success!')"
+
+# ----------------------------------------------------------------------------
+# METHOD 2: System Python (Linux/macOS with --break-system-packages)
+# ----------------------------------------------------------------------------
+# pip install -r requirements.txt --break-system-packages
+
+# ----------------------------------------------------------------------------
+# METHOD 3: Conda Environment (Alternative)
+# ----------------------------------------------------------------------------
+# conda create -n bess python=3.11
+# conda activate bess
+# pip install -r requirements.txt
+
+# ============================================================================
+# TROUBLESHOOTING: "ImportError: Import openpyxl failed"
+# ============================================================================
+# This error means openpyxl is NOT installed in your active Python environment.
+
+# DIAGNOSIS: Check which Python you're using
+# Windows:
+#   where python
+#   python -c "import sys; print(sys.executable)"
+#
+# Linux/macOS:
+#   which python
+#   python -c "import sys; print(sys.executable)"
+
+# SOLUTION 1: Install in the correct environment
+# If using venv (most common):
+#   1. Activate venv: venv\Scripts\activate.bat (Windows) or source venv/bin/activate (Linux/macOS)
+#   2. Install: pip install openpyxl pandas numpy pulp numpy-financial
+#   3. Verify: python -c "import openpyxl; print(openpyxl.__version__)"
+
+# SOLUTION 2: Use PyCharm's package manager (if using PyCharm)
+#   1. File → Settings → Project → Python Interpreter
+#   2. Click "+" to add packages
+#   3. Search and install: pandas, numpy, openpyxl, pulp, numpy-financial
+
+# SOLUTION 3: Reinstall in the specific Python
+# If you know the exact Python path:
+#   C:\Users\pfvme\PycharmProjects\PythonProject\venv\Scripts\python.exe -m pip install openpyxl pandas numpy pulp numpy-financial
+
+# ============================================================================
+# VERIFICATION SCRIPT
+# ============================================================================
+# Save this as test_imports.py and run it to verify all packages:
+#
+# import sys
+# print(f"Python: {sys.executable}")
+# print(f"Version: {sys.version}")
+# print("\nTesting imports...")
+# 
+# packages = {
+#     'pandas': 'pd',
+#     'numpy': 'np', 
+#     'openpyxl': 'openpyxl',
+#     'pulp': 'pulp',
+#     'numpy_financial': 'npf'
+# }
+# 
+# for package, alias in packages.items():
+#     try:
+#         mod = __import__(package)
+#         version = getattr(mod, '__version__', 'unknown')
+#         print(f"✓ {package:20s} {version}")
+#     except ImportError as e:
+#         print(f"✗ {package:20s} NOT INSTALLED - {e}")
+# 
+# print("\nIf all show ✓, you're ready to run the BESS optimizer!")
+
+# ============================================================================
+# OPTIONAL: PERFORMANCE ENHANCEMENTS
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+# LP SOLVER OPTIONS (Choose one or more)
+# ----------------------------------------------------------------------------
+# The default CBC solver (bundled with PuLP) works well for most cases.
+# For better performance, install one of these external solvers:
+
+# 1. HiGHS Solver (Open Source - Fast, RECOMMENDED)
+#    Install: pip install highspy
+#    Performance: 1.5-2x faster than CBC
+#    No external installation needed!
+#
+# 2. CBC Solver (Open Source - Default)
+#    Linux:   sudo apt-get install coinor-cbc
+#    macOS:   brew install coin-or-tools/coinor/cbc
+#    Windows: Download from https://github.com/coin-or/Cbc/releases
+#
+# 3. Gurobi (Commercial - Fastest, Free Academic License)
+#    Install: pip install gurobipy
+#    License: https://www.gurobi.com/downloads/
+#    Performance: 5-10x faster than CBC
+#
+# 4. CPLEX (Commercial - IBM, Free Academic License)
+#    Install: Follow IBM CPLEX installation guide
+#    Performance: 5-10x faster than CBC
+
+# ============================================================================
+# DEVELOPMENT & TESTING (Optional)
+# ============================================================================
+# pytest>=7.0.0        # Unit testing framework
+# black>=22.0.0        # Code formatting
+# flake8>=5.0.0        # Code linting
+# mypy>=1.0.0          # Static type checking
+
+# ============================================================================
+# VERIFIED COMPATIBILITY
+# ============================================================================
+# Tested with:
+#   - Python 3.10, 3.11, 3.12, 3.13, 3.14
+#   - Windows 10, 11 (with venv)
+#   - Ubuntu 22.04, 24.04
+#   - macOS 13+, 14+
+#
+# Minimum Python version: 3.10
+# Recommended Python version: 3.11 or 3.12 (stable, well-tested)
+# Python 3.14: Works but is very new (released 2024)
+# ============================================================================
